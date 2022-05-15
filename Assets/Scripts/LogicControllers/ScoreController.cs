@@ -23,6 +23,7 @@ public class ScoreController : MonoBehaviour
   {
     Debug.Log("Num breakdowns:" + numBreakdowns);
     Debug.Log("Num new loves" + numNewLoves);
+    Debug.Log("Num assingments" + numAssignments);
   }
 
   public void IncrementNumBreakdowns()

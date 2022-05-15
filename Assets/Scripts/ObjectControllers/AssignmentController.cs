@@ -5,9 +5,9 @@ using UnityEngine;
 public class AssignmentController : AbstractObjectController
 {
   // Start is called before the first frame update
-  [SerializeField] private int _numPlayerTouchesBeforeDestroy = 4;
-  private int _numBounces = 0;
-  private int _numPlayerTouches = 0;
+  [SerializeField] protected int _numPlayerTouchesBeforeDestroy = 4;
+  protected int _numBounces = 0;
+  protected int _numPlayerTouches = 0;
 
   new protected void Awake()
   {
@@ -23,7 +23,7 @@ public class AssignmentController : AbstractObjectController
     transform.position = (transform.position + (_movementDirection * Time.deltaTime * _movementSpeed));
   }
 
-  void OnTriggerEnter(Collider collider)
+  protected void OnTriggerEnter(Collider collider)
   {
     if (collider.gameObject.tag == "Wall")
     {
