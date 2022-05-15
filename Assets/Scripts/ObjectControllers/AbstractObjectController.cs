@@ -14,6 +14,8 @@ public class AbstractObjectController : MonoBehaviour
   protected Vector3 _playerPos;
   protected Vector3 _movementDirection;
   protected PlayerController _playerController;
+
+  [SerializeField] protected MeshRenderer _renderer;
   // protected int _numBounces = 0;
   // Used to implement basic bounce behavior. 
 
@@ -55,6 +57,19 @@ public class AbstractObjectController : MonoBehaviour
     var yVariation = Random.Range(0, 15f);
     var nearPlayerPos = new Vector3(_playerPos.x + xVariation, _playerPos.y + yVariation, _playerPos.z);
     _movementDirection = (transform.position - _playerPos).normalized;
+  }
+
+  protected IEnumerator Flasher()
+  {
+    var color = _renderer.material.color;
+    // Renderer.material.color = color;
+    // for (int i = 0; i < 5; i++)
+    // {
+    _renderer.material.color = Color.white;
+    yield return new WaitForSeconds(.1f);
+
+    _renderer.material.color = color;
+    yield return new WaitForSeconds(.1f);
   }
 
 

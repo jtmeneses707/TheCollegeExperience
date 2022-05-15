@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
   private Vector3 MovementDirection;
   // Speed * BoostFactor, helps keep track of correct speed to use. 
   private float ModifiedSpeed;
+
+  private Color flashColor = Color.white;
   // Start is called before the first frame update
   void Start()
   {
@@ -66,6 +68,7 @@ public class PlayerController : MonoBehaviour
     if (other.gameObject.tag == "Wall")
     {
       // Debug.Log("TOUCHED WALL");
+      // TODO: SWITCH SCENES
     }
   }
 
@@ -108,4 +111,6 @@ public class PlayerController : MonoBehaviour
   {
     IncreaseHealth(-DamageFromMissingProject);
   }
+
+
 }

@@ -63,6 +63,7 @@ MonoBehaviour:
   _wallController: {fileID: 0}
   _scoreController: {fileID: 0}
   _numBouncesBeforeDestroy: 6
+  _renderer: {fileID: 5795528170624722733}
   _numPlayerTouchesBeforeDestroy: 4
 --- !u!1001 &5795528170626629453
 PrefabInstance:
@@ -140,5 +141,10 @@ PrefabInstance:
 --- !u!4 &5795528170627016141 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ca1115b0177e24056b9255da02397892, type: 3}
+  m_PrefabInstance: {fileID: 5795528170626629453}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5795528170624722733 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: ca1115b0177e24056b9255da02397892, type: 3}
   m_PrefabInstance: {fileID: 5795528170626629453}
   m_PrefabAsset: {fileID: 0}

@@ -35,6 +35,7 @@ public class NewLoveController : AbstractObjectController
 
   private void OnPlayerCollision()
   {
+    StartCoroutine(Flasher());
     _wallController.DoNewLove();
     _scoreController.IncrementNumNewLoves();
     Destroy(this.gameObject);

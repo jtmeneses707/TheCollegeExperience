@@ -45,6 +45,7 @@ public class AssignmentController : AbstractObjectController
 
   private void OnPlayerCollision()
   {
+    StartCoroutine(Flasher());
     _numPlayerTouches++;
     if (_numPlayerTouches >= _numPlayerTouchesBeforeDestroy)
     {
