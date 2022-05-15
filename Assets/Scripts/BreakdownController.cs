@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakdownController : MonoBehaviour
+public class BreakdownController : AbstractObjectController
 {
-  [SerializeField] private GameObject _player;
-  [SerializeField] private float _movementSpeed;
-  [SerializeField] private WallController _wallController;
-  [SerializeField] private ScoreController _scoreController;
-  [SerializeField] private int _numBouncesBeforeDestroy;
+  // private GameObject _player;
+  // [SerializeField] private GameObject _player;
+  // [SerializeField] private float _movementSpeed;
+  // [SerializeField] private WallController _wallController;
+  // [SerializeField] private ScoreController _scoreController;
+  // [SerializeField] private int _numBouncesBeforeDestroy;
 
-  private Vector3 _playerPos;
-  private Vector3 _movementDirection;
-  private int _numBounces = 0;
+  // private Vector3 _playerPos;
+  // private Vector3 _movementDirection;
+  // private int _numBounces = 0;
 
   void Awake()
   {
@@ -33,18 +34,19 @@ public class BreakdownController : MonoBehaviour
     if (collider.gameObject.tag == "Wall")
     {
       _numBounces++;
+      Bounce(collider);
     }
 
-    if (collider.gameObject.name == "Left Wall" || collider.gameObject.name == "Right Wall")
-    {
-      _movementDirection = new Vector3(-_movementDirection.x, _movementDirection.y, _movementDirection.z);
-    }
+    // if (collider.gameObject.name == "Left Wall" || collider.gameObject.name == "Right Wall")
+    // {
+    //   _movementDirection = new Vector3(-_movementDirection.x, _movementDirection.y, _movementDirection.z);
+    // }
 
-    if (collider.gameObject.name == "Top Wall" || collider.gameObject.name == "Bottom Wall")
-    {
-      // Debug.Log("TOUCHED");
-      _movementDirection = new Vector3(_movementDirection.x, -_movementDirection.y, _movementDirection.z);
-    }
+    // if (collider.gameObject.name == "Top Wall" || collider.gameObject.name == "Bottom Wall")
+    // {
+    //   // Debug.Log("TOUCHED");
+    //   _movementDirection = new Vector3(_movementDirection.x, -_movementDirection.y, _movementDirection.z);
+    // }
 
     if (collider.gameObject.tag == "Player")
     {
