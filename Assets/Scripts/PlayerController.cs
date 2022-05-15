@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float Speed = 100f;
   [SerializeField] private float BoostFactor = 1.5f;
 
+  // private Rigidbody RigidBody;
+
   // Vector3 using new Vector3 and input axes. 
   private Vector3 MovementDirection;
   // Speed * BoostFactor, helps keep track of correct speed to use. 
@@ -15,13 +17,26 @@ public class PlayerController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    // RigidBody = GetComponent<Rigidbody>();
   }
 
   // Update is called once per frame
-  void Update()
+  // void Update()
+  // {
+  //   // Set the modified speed to serialized speed. 
+  //   this.ModifiedSpeed = this.Speed;
+  //   // Continue to add speed and boost if shift down. 
+  //   if (Input.GetKey(KeyCode.LeftShift))
+  //   {
+  //     this.ModifiedSpeed *= this.BoostFactor;
+  //   }
+  //   this.MovementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+  //   this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
+  //   // this.RigidBody.MovePosition(this.gameObject.transform.position + (MovementDirection * Time.deltaTime * ModifiedSpeed));
+  // }
+
+  void FixedUpdate()
   {
-    // Set the modified speed to serialized speed. 
     this.ModifiedSpeed = this.Speed;
     // Continue to add speed and boost if shift down. 
     if (Input.GetKey(KeyCode.LeftShift))
@@ -30,6 +45,15 @@ public class PlayerController : MonoBehaviour
     }
     this.MovementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
     this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
+  }
+
+  private void OnTriggerEnter(Collider other)
+  {
+    Debug.Log("ENTERED");
+    // if (other.gameObject.tag == "Wall")
+    // {
+    //   Debug.Log("TOUCHED WALL");
+    // }
   }
 
   public float GetCurrentSpeed()
