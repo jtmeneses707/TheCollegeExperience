@@ -13,12 +13,12 @@ public class BreakdownController : AbstractObjectController
 
   // private Vector3 _playerPos;
   // private Vector3 _movementDirection;
-  // private int _numBounces = 0;
+  private int _numBounces = 0;
 
   void Awake()
   {
     _playerPos = _player.transform.position;
-    _movementDirection = (_playerPos - transform.position).normalized;
+    SetMovementDirectionTowardsPlayer();
   }
 
   // Update is called once per frame
@@ -30,7 +30,7 @@ public class BreakdownController : AbstractObjectController
 
   void OnTriggerEnter(Collider collider)
   {
-    var objectName = collider.gameObject.name;
+
     if (collider.gameObject.tag == "Wall")
     {
       _numBounces++;
@@ -50,10 +50,7 @@ public class BreakdownController : AbstractObjectController
 
     if (collider.gameObject.tag == "Player")
     {
-      Debug.Log("TOUCHED PLAYER");
-      _wallController.DoMentalBreakdown();
-      _scoreController.IncrementNumBreakdowns();
-      Destroy(this.gameObject);
+      OnPlayerCollision();
     }
 
     if (_numBounces >= _numBouncesBeforeDestroy)
@@ -62,4 +59,13 @@ public class BreakdownController : AbstractObjectController
     }
 
   }
+
+  private void OnPlayerCollision()
+  {
+    _wallController.DoMentalBreakdown();
+    _scoreController.IncrementNumBreakdowns();
+    Destroy(this.gameObject);
+  }
+
+
 }

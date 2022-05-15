@@ -6,7 +6,7 @@ public interface IObjectControllerInterface
 {
   void OnWallCollision();
 
-  void Bounce();
+  void Bounce(Collider collider);
 
   void OnPlayerCollision();
 }

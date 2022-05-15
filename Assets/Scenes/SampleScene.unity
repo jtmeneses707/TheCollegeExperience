@@ -173,7 +173,7 @@ MonoBehaviour:
   BoostFactor: 1.5
   TotalHealth: 100
   CurHealth: 0
-  HealthDecayPerSecond: 50
+  HealthDecayPerSecond: 2
   Renderer: {fileID: 916344587}
   TimeToCompleteCollege: 60
   CurTimeCompleted: 0
@@ -419,9 +419,10 @@ MonoBehaviour:
   RightWall: {fileID: 572673208}
   TopWall: {fileID: 1465299236}
   BottomWall: {fileID: 99437141}
-  VerticalSpeed: 2
-  HorizontalSpeed: 1
-  BreakdownAmount: 10
+  VerticalSpeed: 0.6666667
+  HorizontalSpeed: 0.33333334
+  BreakdownAmount: 4
+  NewLoveAmount: -3
 --- !u!1 &572673208
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6be021ffcdf20488f0c955c81de85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DrawLogic: 1
+  DrawLogic: 0
   Target: {fileID: 24200543}
   TopLeft: {x: -15, y: 15, z: 85}
   BottomRight: {x: 15, y: -15, z: 85}
@@ -954,11 +955,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cf16518f83c434a25a89b7326a9a0ce4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cf16518f83c434a25a89b7326a9a0ce4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cf16518f83c434a25a89b7326a9a0ce4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1346,6 +1347,7 @@ Transform:
   - {fileID: 1153602057}
   - {fileID: 940416967}
   - {fileID: 2002444009}
+  - {fileID: 1918865579}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1358,6 +1360,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918865579}
+  - component: {fileID: 1918865580}
+  - component: {fileID: 1918865581}
   m_Layer: 0
   m_Name: New Love
   m_TagString: Untagged
@@ -1372,14 +1376,44 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918865578}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.311974, y: 18.322662, z: -36.69287}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -43.24, y: 18.322662, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1051819507}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1717502347}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1918865580
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918865578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 6, z: 4.523285}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1918865581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918865578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d279939928f0be44abe484f8b9bc1906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 24200543}
+  _movementSpeed: 100
+  _wallController: {fileID: 567110547}
+  _scoreController: {fileID: 505230982}
+  _numBouncesBeforeDestroy: 5
 --- !u!1001 &2002444008
 PrefabInstance:
   m_ObjectHideFlags: 0

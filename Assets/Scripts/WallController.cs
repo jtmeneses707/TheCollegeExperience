@@ -11,60 +11,68 @@ public class WallController : MonoBehaviour
   [SerializeField] private float VerticalSpeed;
   [SerializeField] private float HorizontalSpeed;
   [SerializeField] private float BreakdownAmount;
+  [SerializeField] private float NewLoveAmount;
+
+  private float _xStartPos;
+  private float _yStartPos;
 
 
 
   // Start is called before the first frame update
   void Start()
   {
-
+    _xStartPos = this.RightWall.transform.position.x;
+    _yStartPos = this.TopWall.transform.position.y;
   }
 
   // Update is called once per frame
   void Update()
   {
-    MoveLeftWall();
-    MoveRightWall();
-    MoveTopWall();
-    MoveBottomWall();
+    var horizontalMovement = Time.deltaTime * HorizontalSpeed;
+    var verticalMovement = Time.deltaTime * VerticalSpeed;
+    MoveLeftWall(horizontalMovement);
+    MoveRightWall(horizontalMovement);
+    MoveTopWall(verticalMovement);
+    MoveBottomWall(verticalMovement);
   }
 
   public void DoMentalBreakdown()
   {
-    var leftWallVector = LeftWall.transform.position;
-    LeftWall.transform.position = new Vector3(leftWallVector.x + BreakdownAmount, leftWallVector.y, leftWallVector.z);
-    var rightWallVector = RightWall.transform.position;
-    RightWall.transform.position = new Vector3(rightWallVector.x - BreakdownAmount, rightWallVector.y, rightWallVector.z);
-    var pos = TopWall.transform.position;
-    TopWall.transform.position = new Vector3(pos.x, pos.y - BreakdownAmount, pos.z);
-    pos = BottomWall.transform.position;
-    BottomWall.transform.position = new Vector3(pos.x, pos.y + BreakdownAmount, pos.z);
+    MoveLeftWall(BreakdownAmount);
+    MoveRightWall(BreakdownAmount);
+    MoveTopWall(BreakdownAmount);
+    MoveBottomWall(BreakdownAmount);
+  }
+
+  public void DoNewLove()
+  {
+    // MoveLeftWall()
   }
 
 
   /** HELPER FUNCTIONS **/
-  void MoveLeftWall()
+  void MoveLeftWall(float moveDistance)
   {
     var leftWallVector = LeftWall.transform.position;
-    LeftWall.transform.position = new Vector3(leftWallVector.x + Time.deltaTime * HorizontalSpeed, leftWallVector.y, leftWallVector.z);
+    LeftWall.transform.position = new Vector3(leftWallVector.x + moveDistance, leftWallVector.y, leftWallVector.z);
   }
 
-  void MoveRightWall()
+  void MoveRightWall(float moveDistance)
   {
     var rightWallVector = RightWall.transform.position;
-    RightWall.transform.position = new Vector3(rightWallVector.x - Time.deltaTime * HorizontalSpeed, rightWallVector.y, rightWallVector.z);
+    RightWall.transform.position = new Vector3(rightWallVector.x - moveDistance, rightWallVector.y, rightWallVector.z);
   }
 
-  void MoveTopWall()
+  void MoveTopWall(float moveDistance)
   {
     var pos = TopWall.transform.position;
-    TopWall.transform.position = new Vector3(pos.x, pos.y - Time.deltaTime * VerticalSpeed, pos.z);
+    TopWall.transform.position = new Vector3(pos.x, pos.y - moveDistance, pos.z);
   }
 
-  void MoveBottomWall()
+  void MoveBottomWall(float moveDistance)
   {
     var pos = BottomWall.transform.position;
-    BottomWall.transform.position = new Vector3(pos.x, pos.y + Time.deltaTime * VerticalSpeed, pos.z);
+    BottomWall.transform.position = new Vector3(pos.x, pos.y + moveDistance, pos.z);
   }
 
   // Returns the y position of the top wall's edge. Used to ensure no assets get spawned outside of playing field.
