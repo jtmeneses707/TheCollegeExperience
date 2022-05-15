@@ -5,8 +5,9 @@ using UnityEngine;
 public class NewLoveController : AbstractObjectController
 {
   // Start is called before the first frame update
-  void Awake()
+  new void Awake()
   {
+    base.Awake();
     _playerPos = _player.transform.position;
     SetMovementDirectionAwayFromPlayer();
   }
@@ -34,10 +35,8 @@ public class NewLoveController : AbstractObjectController
 
   private void OnPlayerCollision()
   {
-    // _wallController
-    Debug.Log("DO NEW LOVE ON PLAYER");
-    // TODO: DO STUFF WITH WALLCONTROLLER AND SCORE>
     _wallController.DoNewLove();
     _scoreController.IncrementNumNewLoves();
+    Destroy(this.gameObject);
   }
 }

@@ -7,10 +7,10 @@ public class BreakdownController : AbstractObjectController
 
   private int _numBounces = 0;
 
-  void Awake()
+  new void Awake()
   {
+    base.Awake();
     _playerPos = _player.transform.position;
-
     SetMovementDirectionTowardsPlayer();
   }
 

@@ -9,8 +9,9 @@ public class AssignmentController : AbstractObjectController
   private int _numBounces = 0;
   private int _numPlayerTouches = 0;
 
-  protected void Awake()
+  new protected void Awake()
   {
+    base.Awake();
     _playerController = _player.GetComponent<PlayerController>();
     _playerPos = _player.transform.position;
     SetMovementDirectionAwayFromPlayer();

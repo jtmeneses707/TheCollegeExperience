@@ -16,6 +16,14 @@ public class AbstractObjectController : MonoBehaviour
   protected PlayerController _playerController;
   // protected int _numBounces = 0;
   // Used to implement basic bounce behavior. 
+
+  protected void Awake()
+  {
+    _player = GameObject.FindGameObjectWithTag("Player");
+    _wallController = GameObject.Find("Walls").GetComponent<WallController>();
+    _scoreController = GameObject.Find("Logic Controller").GetComponent<ScoreController>();
+  }
+
   protected void Bounce(Collider collider)
   {
     if (collider.gameObject.name == "Left Wall" || collider.gameObject.name == "Right Wall")
