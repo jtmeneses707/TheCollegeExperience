@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private MeshRenderer Renderer;
   [SerializeField] private float TimeToCompleteCollege = 60f;
   [SerializeField] private float CurTimeCompleted = 0f;
+  [SerializeField] private float DamageFromMissingAssignment;
+  [SerializeField] private float DamageFromMissingProject;
+  [SerializeField] private float HealthFromAssignment = 10f;
+  [SerializeField] private float HealthFromProject = 25f;
 
 
   // Vector3 using new Vector3 and input axes. 
@@ -83,5 +87,25 @@ public class PlayerController : MonoBehaviour
     {
       CurHealth = 100;
     }
+  }
+
+  public void IncreaseHealthFromAssignment()
+  {
+    IncreaseHealth(HealthFromAssignment);
+  }
+
+  public void IncreaseHealthFromProject()
+  {
+    IncreaseHealth(HealthFromProject);
+  }
+
+  public void TakeDamageFromMissingAssignment()
+  {
+    Debug.Log("TAKING DAMAGE FROM MISSING ASSIGNMENT");
+    IncreaseHealth(-DamageFromMissingAssignment);
+  }
+  public void TakeDamageFromMissingProject()
+  {
+    IncreaseHealth(-DamageFromMissingProject);
   }
 }

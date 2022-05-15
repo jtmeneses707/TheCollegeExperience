@@ -34,4 +34,16 @@ public class ScoreController : MonoBehaviour
   {
     numNewLoves++;
   }
+
+  public void IncrementNumAssignments()
+  {
+    numAssignments++;
+  }
+
+  public void IncrementNumProjects()
+  {
+    numProjects++;
+  }
+
+
 }

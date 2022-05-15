@@ -13,6 +13,7 @@ public class AbstractObjectController : MonoBehaviour
 
   protected Vector3 _playerPos;
   protected Vector3 _movementDirection;
+  protected PlayerController _playerController;
   // protected int _numBounces = 0;
   // Used to implement basic bounce behavior. 
   protected void Bounce(Collider collider)
