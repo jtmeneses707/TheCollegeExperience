@@ -20,7 +20,7 @@ public class WallController : MonoBehaviour
   }
 
   // Update is called once per frame
-  void FixedUpdate()
+  void Update()
   {
     MoveLeftWall();
     MoveRightWall();

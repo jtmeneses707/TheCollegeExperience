@@ -44,16 +44,16 @@ public class PlayerController : MonoBehaviour
       this.ModifiedSpeed *= this.BoostFactor;
     }
     this.MovementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-    this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
+    // this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
+    GetComponent<Rigidbody>().MovePosition(transform.position + (this.MovementDirection * Time.deltaTime * ModifiedSpeed));
   }
 
   private void OnTriggerEnter(Collider other)
   {
-    Debug.Log("ENTERED");
-    // if (other.gameObject.tag == "Wall")
-    // {
-    //   Debug.Log("TOUCHED WALL");
-    // }
+    if (other.gameObject.tag == "Wall")
+    {
+      Debug.Log("TOUCHED WALL");
+    }
   }
 
   public float GetCurrentSpeed()
