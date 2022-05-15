@@ -46,11 +46,50 @@ public class WallController : MonoBehaviour
 
   public void DoNewLove()
   {
-    // MoveLeftWall()
+    if (CanMoveWall(NewLoveAmount))
+    {
+      MoveLeftWall(NewLoveAmount);
+      MoveRightWall(NewLoveAmount);
+      MoveTopWall(NewLoveAmount);
+      MoveBottomWall(NewLoveAmount);
+    }
+    else
+    {
+      MoveWallsToOrigPos();
+    }
+
   }
 
 
   /** HELPER FUNCTIONS **/
+
+  // Checks to see if moving by the param amount will result in position 
+  // than overexceeds original position. 
+  bool CanMoveWall(float amount)
+  {
+    Debug.Log("CAN MOVE WALL FOR NEW LOVE");
+    var horizPos = RightWall.transform.position.x;
+    var vertPos = TopWall.transform.position.y;
+    if (horizPos - amount < _xStartPos && vertPos - amount < _yStartPos)
+    {
+      return true;
+    }
+    return false;
+
+  }
+
+  void MoveWallsToOrigPos()
+  {
+    Debug.Log("Moving walls to orig spot.");
+    var leftWallPos = LeftWall.transform.position;
+    var TopWallPos = TopWall.transform.position;
+    RightWall.transform.position = new Vector3(_xStartPos, leftWallPos.y, leftWallPos.z);
+    LeftWall.transform.position = new Vector3(-_xStartPos, leftWallPos.y, leftWallPos.z);
+    TopWall.transform.position = new Vector3(TopWallPos.x, _yStartPos, TopWallPos.z);
+    BottomWall.transform.position = new Vector3(TopWallPos.x, -_yStartPos, TopWallPos.z);
+
+
+  }
   void MoveLeftWall(float moveDistance)
   {
     var leftWallVector = LeftWall.transform.position;

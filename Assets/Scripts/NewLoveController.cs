@@ -25,11 +25,19 @@ public class NewLoveController : AbstractObjectController
       Debug.Log("SHOULD BOUNCE ON WALL");
       Bounce(collider);
     }
+
+    if (collider.gameObject.tag == "Player")
+    {
+      OnPlayerCollision();
+    }
   }
 
   private void OnPlayerCollision()
   {
     // _wallController
+    Debug.Log("DO NEW LOVE ON PLAYER");
     // TODO: DO STUFF WITH WALLCONTROLLER AND SCORE>
+    _wallController.DoNewLove();
+    _scoreController.IncrementNumNewLoves();
   }
 }

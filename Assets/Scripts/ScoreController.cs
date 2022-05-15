@@ -22,10 +22,16 @@ public class ScoreController : MonoBehaviour
   void Update()
   {
     Debug.Log("Num breakdowns:" + numBreakdowns);
+    Debug.Log("Num new loves" + numNewLoves);
   }
 
   public void IncrementNumBreakdowns()
   {
     numBreakdowns++;
+  }
+
+  public void IncrementNumNewLoves()
+  {
+    numNewLoves++;
   }
 }
