@@ -10,6 +10,7 @@ public class WallController : MonoBehaviour
   [SerializeField] private GameObject BottomWall;
   [SerializeField] private float VerticalSpeed;
   [SerializeField] private float HorizontalSpeed;
+  [SerializeField] private float BreakdownAmount;
 
 
 
@@ -26,6 +27,18 @@ public class WallController : MonoBehaviour
     MoveRightWall();
     MoveTopWall();
     MoveBottomWall();
+  }
+
+  public void DoMentalBreakdown()
+  {
+    var leftWallVector = LeftWall.transform.position;
+    LeftWall.transform.position = new Vector3(leftWallVector.x + BreakdownAmount, leftWallVector.y, leftWallVector.z);
+    var rightWallVector = RightWall.transform.position;
+    RightWall.transform.position = new Vector3(rightWallVector.x - BreakdownAmount, rightWallVector.y, rightWallVector.z);
+    var pos = TopWall.transform.position;
+    TopWall.transform.position = new Vector3(pos.x, pos.y - BreakdownAmount, pos.z);
+    pos = BottomWall.transform.position;
+    BottomWall.transform.position = new Vector3(pos.x, pos.y + BreakdownAmount, pos.z);
   }
 
 

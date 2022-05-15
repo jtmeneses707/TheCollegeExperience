@@ -7,8 +7,13 @@ public class PlayerController : MonoBehaviour
 {
   [SerializeField] private float Speed = 100f;
   [SerializeField] private float BoostFactor = 1.5f;
+  [SerializeField] private float TotalHealth = 100f;
+  [SerializeField] private float CurHealth;
+  [SerializeField] private float HealthDecayPerSecond = 1.5f;
+  [SerializeField] private MeshRenderer Renderer;
+  [SerializeField] private float TimeToCompleteCollege = 60f;
+  [SerializeField] private float CurTimeCompleted = 0f;
 
-  // private Rigidbody RigidBody;
 
   // Vector3 using new Vector3 and input axes. 
   private Vector3 MovementDirection;
@@ -17,23 +22,27 @@ public class PlayerController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    // RigidBody = GetComponent<Rigidbody>();
+    CurHealth = TotalHealth;
   }
 
-  // Update is called once per frame
-  // void Update()
-  // {
-  //   // Set the modified speed to serialized speed. 
-  //   this.ModifiedSpeed = this.Speed;
-  //   // Continue to add speed and boost if shift down. 
-  //   if (Input.GetKey(KeyCode.LeftShift))
-  //   {
-  //     this.ModifiedSpeed *= this.BoostFactor;
-  //   }
-  //   this.MovementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-  //   this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
-  //   // this.RigidBody.MovePosition(this.gameObject.transform.position + (MovementDirection * Time.deltaTime * ModifiedSpeed));
-  // }
+  void Update()
+  {
+    if (CurHealth > 0)
+    {
+      CurHealth -= Time.deltaTime * HealthDecayPerSecond;
+    }
+
+    CurTimeCompleted += Time.deltaTime;
+    // Change opacity. 
+    var color = Renderer.material.color;
+    color.a = CurHealth / TotalHealth;
+    Renderer.material.color = color;
+
+    if (CurTimeCompleted >= TimeToCompleteCollege)
+    {
+      // TODO: DO SOMETHING WITH SCENE MANAGER AND SCORE. 
+    }
+  }
 
   void FixedUpdate()
   {
@@ -45,14 +54,14 @@ public class PlayerController : MonoBehaviour
     }
     this.MovementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
     // this.gameObject.transform.Translate(this.MovementDirection * Time.deltaTime * this.ModifiedSpeed);
-    GetComponent<Rigidbody>().MovePosition(transform.position + (this.MovementDirection * Time.deltaTime * ModifiedSpeed));
+    GetComponent<Rigidbody>().MovePosition(transform.position + (this.MovementDirection * Time.fixedDeltaTime * ModifiedSpeed));
   }
 
   private void OnTriggerEnter(Collider other)
   {
     if (other.gameObject.tag == "Wall")
     {
-      Debug.Log("TOUCHED WALL");
+      // Debug.Log("TOUCHED WALL");
     }
   }
 
@@ -64,5 +73,15 @@ public class PlayerController : MonoBehaviour
   public Vector3 GetMovementDirection()
   {
     return this.MovementDirection;
+  }
+
+  public void IncreaseHealth(float increase)
+  {
+    CurHealth += increase;
+    // Make sure health doesn't go above 100.
+    if (CurHealth > 100)
+    {
+      CurHealth = 100;
+    }
   }
 }
