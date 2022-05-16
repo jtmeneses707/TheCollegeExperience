@@ -40,7 +40,16 @@ public class ObjectSpawner : MonoBehaviour
     else if (choice > 0.10 && choice < 0.65)
     {
       Debug.Log("Creating Assignment or Project");
-      InstantiateObjectInBounds(_assignment);
+
+      var assignType = Random.Range(0, 1f);
+      if (assignType < 0.65)
+      {
+        InstantiateObjectInBounds(_assignment);
+      }
+      else
+      {
+        InstantiateObjectInBounds(_project);
+      }
     }
     else
     {

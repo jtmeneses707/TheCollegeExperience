@@ -166,21 +166,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 24200543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9e0f29f6218dd4a866a70ec20690cd, type: 3}
+  m_Script: {fileID: 11500000, guid: cbc5a477a46a9fd43ba6d0103bcf3abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 100
   BoostFactor: 1.5
   TotalHealth: 100
   CurHealth: 0
-  HealthDecayPerSecond: 2
+  HealthDecayPerSecond: 1.5
   Renderer: {fileID: 916344587}
   TimeToCompleteCollege: 60
   CurTimeCompleted: 0
-  DamageFromMissingAssignment: 7
-  DamageFromMissingProject: 15
+  DamageFromMissingAssignment: 0
+  DamageFromMissingProject: 0
   HealthFromAssignment: 10
   HealthFromProject: 25
+  ScoreController: {fileID: 505230982}
 --- !u!135 &24200546
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ GameObject:
   - component: {fileID: 505230981}
   - component: {fileID: 505230982}
   - component: {fileID: 505230983}
+  - component: {fileID: 505230984}
   m_Layer: 0
   m_Name: Logic Controller
   m_TagString: Untagged
@@ -382,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 505230980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196c371da3bc4ba4f9ddebca4cf9afe3, type: 3}
+  m_Script: {fileID: 11500000, guid: cb11e64fc0ffae94a916c5e2a0aba0d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playingField: {fileID: 1717502346}
@@ -391,9 +393,21 @@ MonoBehaviour:
   _assignment: {fileID: 5795528170011153973, guid: 93f7c44792d848f48a35864c35a412e2, type: 3}
   _project: {fileID: 8134171683885049581, guid: f5eafc63ff40db748afcb07657d4a342, type: 3}
   _wallController: {fileID: 567110547}
-  _bufferDistance: 10
+  _bufferDistance: 15
   _baseTimeBetweenSpawns: 2
   _upperLimitTime: 0
+--- !u!114 &505230984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505230980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad4b21d668a92945a47f5c2ee43de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &567110545
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +461,7 @@ MonoBehaviour:
   BottomWall: {fileID: 99437141}
   VerticalSpeed: 1.4285715
   HorizontalSpeed: 0.71428573
-  BreakdownAmount: 4
+  BreakdownAmount: 2
   NewLoveAmount: -15
 --- !u!1 &572673208
 GameObject:
@@ -697,7 +711,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8113208, g: 0.8068085, b: 0.76157, a: 0}
+  m_BackGroundColor: {r: 0.8980393, g: 0.91372555, b: 0.93725497, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
