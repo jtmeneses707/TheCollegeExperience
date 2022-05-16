@@ -115,28 +115,33 @@ public class WallController : MonoBehaviour
   }
 
   // Returns the y position of the top wall's edge. Used to ensure no assets get spawned outside of playing field.
-  float GetTopEdgePosition()
+  public float GetTopEdgePosition()
   {
     var yScale = TopWall.transform.localScale.y;
+    Debug.Log("Y SCALE" + yScale);
     var yPos = TopWall.transform.position.y;
+    Debug.Log("Y POS" + yPos);
+
+    var edge = yPos - yScale / 2f;
+    Debug.Log("TOP EDGE" + edge);
     return yPos - yScale / 2;
   }
 
-  float GetBottomEdgePosition()
+  public float GetBottomEdgePosition()
   {
     var yScale = BottomWall.transform.localScale.y;
     var yPos = BottomWall.transform.position.y;
     return yPos + yScale / 2;
   }
 
-  float GetLeftEdgePosition()
+  public float GetLeftEdgePosition()
   {
     var xScale = LeftWall.transform.localScale.x;
     var xPos = LeftWall.transform.position.x;
     return xPos + xScale / 2;
   }
 
-  float GetRightEdgePosition()
+  public float GetRightEdgePosition()
   {
     var xScale = RightWall.transform.localScale.x;
     var xPos = RightWall.transform.position.x;

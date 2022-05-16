@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float DamageFromMissingProject;
   [SerializeField] private float HealthFromAssignment = 10f;
   [SerializeField] private float HealthFromProject = 25f;
+  [SerializeField] private ScoreController ScoreController;
 
 
   // Vector3 using new Vector3 and input axes. 
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     if (CurTimeCompleted >= TimeToCompleteCollege)
     {
+      ScoreController.CompleteCollege();
       // TODO: DO SOMETHING WITH SCENE MANAGER AND SCORE. 
     }
   }
@@ -92,6 +94,15 @@ public class PlayerController : MonoBehaviour
     }
   }
 
+  public void DecreaseHealth(float dec)
+  {
+    CurHealth -= dec;
+    if (CurHealth < 0)
+    {
+      CurHealth = 0f;
+    }
+  }
+
   public void IncreaseHealthFromAssignment()
   {
     IncreaseHealth(HealthFromAssignment);
@@ -105,11 +116,15 @@ public class PlayerController : MonoBehaviour
   public void TakeDamageFromMissingAssignment()
   {
     Debug.Log("TAKING DAMAGE FROM MISSING ASSIGNMENT");
-    IncreaseHealth(-DamageFromMissingAssignment);
+    if (CurHealth > 0)
+    {
+      DecreaseHealth(DamageFromMissingAssignment);
+    }
+
   }
   public void TakeDamageFromMissingProject()
   {
-    IncreaseHealth(-DamageFromMissingProject);
+    DecreaseHealth(DamageFromMissingProject);
   }
 
 

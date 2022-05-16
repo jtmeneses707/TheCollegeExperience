@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _movementSpeed: 75
+  _movementSpeed: 40
   _wallController: {fileID: 0}
   _scoreController: {fileID: 0}
   _numBouncesBeforeDestroy: 5

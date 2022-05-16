@@ -46,5 +46,10 @@ public class ScoreController : MonoBehaviour
     numProjects++;
   }
 
+  public void CompleteCollege()
+  {
+    completedCollege = true;
+  }
+
 
 }
