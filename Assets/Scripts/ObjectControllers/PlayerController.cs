@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Code based on code previously used in SQ 2021 for McCoy's ECS 189L class. 
 public class PlayerController : MonoBehaviour
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float HealthFromAssignment = 10f;
   [SerializeField] private float HealthFromProject = 25f;
   [SerializeField] private ScoreController ScoreController;
+
 
 
   // Vector3 using new Vector3 and input axes. 
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
     if (CurTimeCompleted >= TimeToCompleteCollege)
     {
       ScoreController.CompleteCollege();
-      // TODO: DO SOMETHING WITH SCENE MANAGER AND SCORE. 
+      EndGame();
     }
   }
 
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
     if (other.gameObject.tag == "Wall")
     {
       // Debug.Log("TOUCHED WALL");
-      // TODO: SWITCH SCENES
+      EndGame();
     }
   }
 
@@ -125,6 +128,17 @@ public class PlayerController : MonoBehaviour
   public void TakeDamageFromMissingProject()
   {
     DecreaseHealth(DamageFromMissingProject);
+  }
+
+  void EndGame()
+  {
+    PlayerPrefs.SetInt("Breakdowns", ScoreController.numBreakdowns);
+    PlayerPrefs.SetInt("Assignments", ScoreController.numAssignments);
+    PlayerPrefs.SetInt("Projects", ScoreController.numProjects);
+    PlayerPrefs.SetInt("Loves", ScoreController.numNewLoves);
+    PlayerPrefs.SetString("Percent", (CurTimeCompleted / TimeToCompleteCollege).ToString("P1", CultureInfo.InvariantCulture));
+    PlayerPrefs.SetString("Completed", ScoreController.completedCollege.ToString());
+    SceneManager.LoadScene("Ending");
   }
 
 

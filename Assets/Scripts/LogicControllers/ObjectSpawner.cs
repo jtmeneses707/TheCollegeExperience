@@ -63,12 +63,7 @@ public class ObjectSpawner : MonoBehaviour
     _zPos = _playingField.transform.position.z;
   }
   // Start is called before the first frame update
-  void Start()
-  {
-    Debug.Log("INSTANTIATE");
-    Instantiate(_breakdown, new Vector3(0f, 0f, _zPos), Quaternion.identity);
-    Instantiate(_newLove, new Vector3(0f, 0f, _zPos), Quaternion.identity);
-  }
+
 
   // Update is called once per frame
   void Update()
